@@ -4,8 +4,8 @@ use gorani_syntax::{SyntaxKind, SyntaxNode};
 pub struct TypeSystemExtensionNode(pub(crate) SyntaxNode);
 
 pub enum TypeSystemExtensionKindNOde {
-    TypeExtension(crate::TypeExtensionNode),
     SchemaExtension(crate::SchemaExtensionNode),
+    TypeExtension(crate::TypeExtensionNode),
 }
 
 impl Node for TypeSystemExtensionNode {
@@ -29,12 +29,12 @@ impl Parent<TypeSystemExtensionNode> for crate::TypeSystemDefinitionOrExtensionN
 
 impl TypeSystemExtensionKindNOde {
     pub fn cast(node: SyntaxNode) -> Option<Self> {
-        if matches!(node.kind(), SyntaxKind::TYPE_EXTENSION) {
-            Some(Self::TypeExtension(crate::TypeExtensionNode::cast(node)?))
-        } else if matches!(node.kind(), SyntaxKind::SCHEMA_EXTENSION) {
+        if matches!(node.kind(), SyntaxKind::SCHEMA_EXTENSION) {
             Some(Self::SchemaExtension(crate::SchemaExtensionNode::cast(
                 node,
             )?))
+        } else if matches!(node.kind(), SyntaxKind::TYPE_EXTENSION) {
+            Some(Self::TypeExtension(crate::TypeExtensionNode::cast(node)?))
         } else {
             None
         }
@@ -48,11 +48,11 @@ impl TypeSystemExtensionNode {
             .find_map(TypeSystemExtensionKindNOde::cast)
     }
 
-    pub fn type_extension(&self) -> Option<crate::TypeExtensionNode> {
-        <Self as crate::Parent<crate::TypeExtensionNode>>::child(self)
-    }
-
     pub fn schema_extension(&self) -> Option<crate::SchemaExtensionNode> {
         <Self as crate::Parent<crate::SchemaExtensionNode>>::child(self)
+    }
+
+    pub fn type_extension(&self) -> Option<crate::TypeExtensionNode> {
+        <Self as crate::Parent<crate::TypeExtensionNode>>::child(self)
     }
 }

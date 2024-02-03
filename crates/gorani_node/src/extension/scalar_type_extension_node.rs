@@ -23,6 +23,18 @@ impl Parent<ScalarTypeExtensionNode> for crate::TypeExtensionNode {
 }
 
 impl ScalarTypeExtensionNode {
+    pub fn extend(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_EXTEND))
+    }
+
+    pub fn scalar(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_SCALAR))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as crate::Parent<crate::NameNode>>::child(self)
     }

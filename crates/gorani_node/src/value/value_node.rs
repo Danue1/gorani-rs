@@ -42,6 +42,10 @@ impl Parent<ValueNode> for crate::ObjectFieldNode {
     //
 }
 
+impl Parent<ValueNode> for crate::DefaultValueNode {
+    //
+}
+
 impl ValueKindNode {
     fn cast(node: SyntaxNode) -> Option<Self> {
         if let Some(node) = crate::VariableNode::cast(node.clone()) {

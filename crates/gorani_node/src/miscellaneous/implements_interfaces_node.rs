@@ -30,7 +30,23 @@ impl Parent<ImplementsInterfacesNode> for crate::ObjectTypeExtensionNode {
     //
 }
 
+impl Parent<ImplementsInterfacesNode> for crate::InterfaceTypeExtensionNode {
+    //
+}
+
 impl ImplementsInterfacesNode {
+    pub fn implements(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_IMPLEMENTS))
+    }
+
+    pub fn ampersands(&self) -> impl Iterator<Item = SyntaxNode> {
+        self.0
+            .children()
+            .filter(|node| matches!(node.kind(), SyntaxKind::SYMBOL_AMPERSAND))
+    }
+
     pub fn named_types(&self) -> Option<crate::NamedTypeNode> {
         <Self as Parent<crate::NamedTypeNode>>::child(self)
     }

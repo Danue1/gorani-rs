@@ -23,7 +23,13 @@ impl Parent<DirectiveLocationsNode> for crate::DirectiveDefinitionNode {
 }
 
 impl DirectiveLocationsNode {
-    pub fn directive_location(&self) -> impl Iterator<Item = crate::DirectiveLocationNode> + '_ {
+    pub fn pipes(&self) -> impl Iterator<Item = SyntaxNode> + '_ {
+        self.0
+            .children()
+            .filter(|node| matches!(node.kind(), SyntaxKind::SYMBOL_PIPE))
+    }
+
+    pub fn directive_locations(&self) -> impl Iterator<Item = crate::DirectiveLocationNode> + '_ {
         <Self as Parent<crate::DirectiveLocationNode>>::children(self)
     }
 }

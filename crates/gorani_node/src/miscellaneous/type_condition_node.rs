@@ -27,6 +27,12 @@ impl Parent<TypeConditionNode> for crate::FragmentDefinitionNode {
 }
 
 impl TypeConditionNode {
+    pub fn on(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_ON))
+    }
+
     pub fn named_type(&self) -> Option<crate::NamedTypeNode> {
         <Self as Parent<crate::NamedTypeNode>>::child(self)
     }

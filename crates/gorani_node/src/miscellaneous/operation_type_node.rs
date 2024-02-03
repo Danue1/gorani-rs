@@ -36,9 +36,9 @@ impl Parent<OperationTypeNode> for crate::RootOperationTypeDefinitionNode {
 impl OperationTypeNode {
     pub fn operation_type(&self) -> Option<OperationType> {
         match self.node().kind() {
-            SyntaxKind::SYMBOL_QUERY => Some(OperationType::Query),
-            SyntaxKind::SYMBOL_MUTATION => Some(OperationType::Mutation),
-            SyntaxKind::SYMBOL_SUBSCRIPTION => Some(OperationType::Subscription),
+            SyntaxKind::KEYWORD_QUERY => Some(OperationType::Query),
+            SyntaxKind::KEYWORD_MUTATION => Some(OperationType::Mutation),
+            SyntaxKind::KEYWORD_SUBSCRIPTION => Some(OperationType::Subscription),
             _ => None,
         }
     }

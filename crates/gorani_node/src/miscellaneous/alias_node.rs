@@ -21,3 +21,15 @@ impl Node for AliasNode {
 impl Parent<AliasNode> for crate::FieldNode {
     //
 }
+
+impl AliasNode {
+    pub fn name(&self) -> Option<crate::NameNode> {
+        <Self as Parent<crate::NameNode>>::child(self)
+    }
+
+    pub fn colon(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_COLON))
+    }
+}

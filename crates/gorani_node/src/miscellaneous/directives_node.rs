@@ -98,6 +98,18 @@ impl Parent<DirectivesNode> for crate::InputObjectTypeExtensionNode {
     //
 }
 
+impl Parent<DirectivesNode> for crate::VariableDefinitionNode {
+    //
+}
+
+impl Parent<DirectivesNode> for crate::SchemaExtensionNode {
+    //
+}
+
+impl Parent<DirectivesNode> for crate::FieldDefinitionNode {
+    //
+}
+
 impl DirectivesNode {
     pub fn directives(&self) -> impl Iterator<Item = crate::DirectiveNode> + '_ {
         <Self as Parent<crate::DirectiveNode>>::children(self)

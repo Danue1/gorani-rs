@@ -22,8 +22,24 @@ impl Parent<ListTypeNode> for crate::TypeNode {
     //
 }
 
+impl Parent<ListTypeNode> for crate::NonNullTypeNode {
+    //
+}
+
 impl ListTypeNode {
+    pub fn left_bracket(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_LEFT_BRACKET))
+    }
+
     pub fn r#type(&self) -> Option<crate::TypeNode> {
         <Self as Parent<crate::TypeNode>>::child(self)
+    }
+
+    pub fn right_bracket(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_RIGHT_BRACKET))
     }
 }

@@ -35,7 +35,19 @@ impl Parent<SelectionSetNode> for crate::FragmentDefinitionNode {
 }
 
 impl SelectionSetNode {
+    pub fn left_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_LEFT_BRACE))
+    }
+
     pub fn selections(&self) -> impl Iterator<Item = crate::SelectionNode> + '_ {
         <Self as crate::Parent<crate::SelectionNode>>::children(self)
+    }
+
+    pub fn right_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_RIGHT_BRACE))
     }
 }

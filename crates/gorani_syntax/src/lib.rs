@@ -273,25 +273,41 @@ pub enum SyntaxKind {
     /// https://spec.graphql.org/draft/#sec-Names
     NAME,
 
-    SYMBOL_QUERY,        // query
-    SYMBOL_MUTATION,     // mutation
-    SYMBOL_SUBSCRIPTION, // subscription
-    SYMBOL_TRUE,         // true
-    SYMBOL_FALSE,        // false
-    SYMBOL_NULL,         // null
-    SYMBOL_REPEATABLE,   // repeatable
-    SYMBOL_ON,           // on
-    SYMBOL_SCALAR,       // scalar
-    SYMBOL_SCHEMA,       // schema
-    SYMBOL_TYPE,         // type
-    SYMBOL_INTERFACE,    // interface
-    SYMBOL_UNION,        // union
-    SYMBOL_ENUM,         // enum
-    SYMBOL_INPUT,        // input
-    SYMBOL_DIRECTIVE,    // directive
-    SYMBOL_IMPLEMENTS,   // implements
-    SYMBOL_EXTEND,       // extend
-    SYMBOL_EXTENDS,      // extends
+    KEYWORD_FRAGMENT,     // fragment
+    KEYWORD_QUERY,        // query
+    KEYWORD_MUTATION,     // mutation
+    KEYWORD_SUBSCRIPTION, // subscription
+    KEYWORD_TRUE,         // true
+    KEYWORD_FALSE,        // false
+    KEYWORD_NULL,         // null
+    KEYWORD_REPEATABLE,   // repeatable
+    KEYWORD_ON,           // on
+    KEYWORD_SCALAR,       // scalar
+    KEYWORD_SCHEMA,       // schema
+    KEYWORD_TYPE,         // type
+    KEYWORD_INTERFACE,    // interface
+    KEYWORD_UNION,        // union
+    KEYWORD_ENUM,         // enum
+    KEYWORD_INPUT,        // input
+    KEYWORD_DIRECTIVE,    // directive
+    KEYWORD_IMPLEMENTS,   // implements
+    KEYWORD_EXTEND,       // extend
+    KEYWORD_EXTENDS,      // extends
+
+    SYMBOL_LEFT_PARENS,   // (
+    SYMBOL_RIGHT_PARENS,  // )
+    SYMBOL_COLON,         // :
+    SYMBOL_EQUAL,         // =
+    SYMBOL_AT,            // @
+    SYMBOL_DOLLAR,        // $
+    SYMBOL_AMPERSAND,     // &
+    SYMBOL_LEFT_BRACKET,  // [
+    SYMBOL_RIGHT_BRACKET, // ]
+    SYMBOL_LEFT_BRACE,    // {
+    SYMBOL_RIGHT_BRACE,   // }
+    SYMBOL_EXCLAMATION,   // !
+    SYMBOL_PIPE,          // |
+    SYMBOL_SPREAD,        // ...
 
     // https://spec.graphql.org/draft/#sec-Location
     LOCATION_QUERY,               // QUERY

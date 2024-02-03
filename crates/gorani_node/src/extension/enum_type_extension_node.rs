@@ -23,6 +23,18 @@ impl Parent<EnumTypeExtensionNode> for crate::TypeExtensionNode {
 }
 
 impl EnumTypeExtensionNode {
+    pub fn extend(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_EXTEND))
+    }
+
+    pub fn r#enum(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_ENUM))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as crate::Parent<crate::NameNode>>::child(self)
     }

@@ -27,6 +27,18 @@ impl DirectiveDefinitionNode {
         <Self as Parent<crate::DescriptionNode>>::child(self)
     }
 
+    pub fn directive(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_DIRECTIVE))
+    }
+
+    pub fn at(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_AT))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as Parent<crate::NameNode>>::child(self)
     }
@@ -38,7 +50,13 @@ impl DirectiveDefinitionNode {
     pub fn repeatable(&self) -> Option<SyntaxNode> {
         self.0
             .children()
-            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_REPEATABLE))
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_REPEATABLE))
+    }
+
+    pub fn on(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_ON))
     }
 
     pub fn directive_locations(&self) -> Option<crate::DirectiveLocationsNode> {

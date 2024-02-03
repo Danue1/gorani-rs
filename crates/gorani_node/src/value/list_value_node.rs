@@ -23,7 +23,19 @@ impl Parent<ListValueNode> for crate::ValueNode {
 }
 
 impl ListValueNode {
+    pub fn left_bracket(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_LEFT_BRACKET))
+    }
+
     pub fn values(&self) -> impl Iterator<Item = crate::ValueNode> + '_ {
         <Self as Parent<crate::ValueNode>>::children(self)
+    }
+
+    pub fn right_bracket(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_RIGHT_BRACKET))
     }
 }

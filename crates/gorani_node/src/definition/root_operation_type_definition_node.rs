@@ -22,9 +22,19 @@ impl Parent<RootOperationTypeDefinitionNode> for crate::SchemaDefinitionNode {
     //
 }
 
+impl Parent<RootOperationTypeDefinitionNode> for crate::SchemaExtensionNode {
+    //
+}
+
 impl RootOperationTypeDefinitionNode {
     pub fn operation_type(&self) -> Option<crate::OperationTypeNode> {
         <Self as Parent<crate::OperationTypeNode>>::child(self)
+    }
+
+    pub fn colon(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_COLON))
     }
 
     pub fn named_type(&self) -> Option<crate::NamedTypeNode> {

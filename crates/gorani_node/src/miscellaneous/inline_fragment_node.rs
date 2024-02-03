@@ -23,6 +23,12 @@ impl Parent<InlineFragmentNode> for crate::SelectionNode {
 }
 
 impl InlineFragmentNode {
+    pub fn spread(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_SPREAD))
+    }
+
     pub fn type_condition(&self) -> Option<crate::TypeConditionNode> {
         <Self as Parent<crate::TypeConditionNode>>::child(self)
     }

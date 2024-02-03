@@ -23,6 +23,18 @@ impl Parent<InputObjectTypeExtensionNode> for crate::TypeExtensionNode {
 }
 
 impl InputObjectTypeExtensionNode {
+    pub fn extend(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_EXTEND))
+    }
+
+    pub fn input(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_INPUT))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as crate::Parent<crate::NameNode>>::child(self)
     }

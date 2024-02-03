@@ -23,6 +23,12 @@ impl Parent<DirectiveNode> for crate::DirectivesNode {
 }
 
 impl DirectiveNode {
+    pub fn at(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_AT))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as Parent<crate::NameNode>>::child(self)
     }

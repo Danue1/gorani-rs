@@ -35,7 +35,17 @@ impl FieldDefinitionNode {
         <Self as Parent<crate::ArgumentsDefinitionNode>>::child(self)
     }
 
+    pub fn colon(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_COLON))
+    }
+
     pub fn r#type(&self) -> Option<crate::TypeNode> {
         <Self as Parent<crate::TypeNode>>::child(self)
+    }
+
+    pub fn directives(&self) -> Option<crate::DirectivesNode> {
+        <Self as Parent<crate::DirectivesNode>>::child(self)
     }
 }

@@ -41,3 +41,9 @@ impl Parent<NamedTypeNode> for crate::ImplementsInterfacesNode {
 impl Parent<NamedTypeNode> for crate::UnionMemberTypesNode {
     //
 }
+
+impl NamedTypeNode {
+    pub fn name(&self) -> Option<crate::NameNode> {
+        <Self as Parent<crate::NameNode>>::child(self)
+    }
+}

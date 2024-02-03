@@ -109,3 +109,11 @@ impl Parent<NameNode> for crate::EnumTypeExtensionNode {
 impl Parent<NameNode> for crate::InputObjectTypeExtensionNode {
     //
 }
+
+impl Parent<NameNode> for crate::AliasNode {
+    //
+}
+
+impl Parent<NameNode> for crate::NamedTypeNode {
+    //
+}

@@ -27,13 +27,31 @@ impl SchemaDefinitionNode {
         <Self as Parent<crate::DescriptionNode>>::child(self)
     }
 
+    pub fn schema(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_SCHEMA))
+    }
+
     pub fn directives(&self) -> Option<crate::DirectivesNode> {
         <Self as Parent<crate::DirectivesNode>>::child(self)
+    }
+
+    pub fn left_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_LEFT_BRACE))
     }
 
     pub fn root_operation_type_definition(
         &self,
     ) -> impl Iterator<Item = crate::RootOperationTypeDefinitionNode> + '_ {
         <Self as Parent<crate::RootOperationTypeDefinitionNode>>::children(self)
+    }
+
+    pub fn right_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_RIGHT_BRACE))
     }
 }

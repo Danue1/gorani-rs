@@ -27,9 +27,21 @@ impl Parent<InputFieldsDefinitionNode> for crate::InputObjectTypeExtensionNode {
 }
 
 impl InputFieldsDefinitionNode {
+    pub fn left_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_LEFT_BRACE))
+    }
+
     pub fn input_value_definitions(
         &self,
     ) -> impl Iterator<Item = crate::InputValueDefinitionNode> + '_ {
         <Self as Parent<crate::InputValueDefinitionNode>>::children(self)
+    }
+
+    pub fn right_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_RIGHT_BRACE))
     }
 }

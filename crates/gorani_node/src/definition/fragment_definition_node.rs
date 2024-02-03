@@ -23,6 +23,12 @@ impl Parent<FragmentDefinitionNode> for crate::ExecutableDefinitionNode {
 }
 
 impl FragmentDefinitionNode {
+    pub fn fragment(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_FRAGMENT))
+    }
+
     pub fn fragment_name(&self) -> Option<crate::FragmentNameNode> {
         <Self as Parent<crate::FragmentNameNode>>::child(self)
     }

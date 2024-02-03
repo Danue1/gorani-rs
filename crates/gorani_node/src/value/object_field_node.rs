@@ -27,6 +27,12 @@ impl ObjectFieldNode {
         <Self as Parent<crate::NameNode>>::child(self)
     }
 
+    pub fn colon(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_COLON))
+    }
+
     pub fn value(&self) -> Option<crate::ValueNode> {
         <Self as Parent<crate::ValueNode>>::child(self)
     }

@@ -27,6 +27,12 @@ impl ArgumentNode {
         self.0.children().find_map(crate::NameNode::cast)
     }
 
+    pub fn colon(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_COLON))
+    }
+
     pub fn value(&self) -> Option<crate::ValueNode> {
         self.0.children().find_map(crate::ValueNode::cast)
     }

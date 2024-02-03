@@ -27,6 +27,12 @@ impl InterfaceTypeDefinitionNode {
         <Self as Parent<crate::DescriptionNode>>::child(self)
     }
 
+    pub fn interface(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_INTERFACE))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as Parent<crate::NameNode>>::child(self)
     }

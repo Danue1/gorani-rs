@@ -35,7 +35,19 @@ impl Parent<FieldsDefinitionNode> for crate::InterfaceTypeExtensionNode {
 }
 
 impl FieldsDefinitionNode {
+    pub fn left_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_LEFT_BRACE))
+    }
+
     pub fn field_definitions(&self) -> impl Iterator<Item = crate::FieldDefinitionNode> + '_ {
         <Self as Parent<crate::FieldDefinitionNode>>::children(self)
+    }
+
+    pub fn right_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_RIGHT_BRACE))
     }
 }

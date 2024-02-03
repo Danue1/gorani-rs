@@ -27,6 +27,12 @@ impl EnumTypeDefinitionNode {
         <Self as Parent<crate::DescriptionNode>>::child(self)
     }
 
+    pub fn r#enum(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_ENUM))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as Parent<crate::NameNode>>::child(self)
     }

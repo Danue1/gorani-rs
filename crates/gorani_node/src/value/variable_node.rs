@@ -22,7 +22,17 @@ impl Parent<VariableNode> for crate::ValueNode {
     //
 }
 
+impl Parent<VariableNode> for crate::VariableDefinitionNode {
+    //
+}
+
 impl VariableNode {
+    pub fn dollar(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_DOLLAR))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as crate::Parent<crate::NameNode>>::child(self)
     }

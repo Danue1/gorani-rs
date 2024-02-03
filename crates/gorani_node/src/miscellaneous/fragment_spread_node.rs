@@ -23,6 +23,12 @@ impl Parent<FragmentSpreadNode> for crate::SelectionNode {
 }
 
 impl FragmentSpreadNode {
+    pub fn spread(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_SPREAD))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as Parent<crate::NameNode>>::child(self)
     }

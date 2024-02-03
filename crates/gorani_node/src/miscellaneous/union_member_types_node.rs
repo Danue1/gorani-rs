@@ -27,6 +27,18 @@ impl Parent<UnionMemberTypesNode> for crate::UnionTypeExtensionNode {
 }
 
 impl UnionMemberTypesNode {
+    pub fn equal(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_EQUAL))
+    }
+
+    pub fn pipes(&self) -> impl Iterator<Item = SyntaxNode> + '_ {
+        self.0
+            .children()
+            .filter(|node| matches!(node.kind(), SyntaxKind::SYMBOL_PIPE))
+    }
+
     pub fn named_types(&self) -> Option<crate::NamedTypeNode> {
         <Self as Parent<crate::NamedTypeNode>>::child(self)
     }

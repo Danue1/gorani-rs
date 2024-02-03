@@ -25,7 +25,7 @@ impl Parent<NullValueNode> for crate::ValueNode {
 impl NullValueNode {
     pub fn value(&self) -> bool {
         match self.0.first_child() {
-            Some(child) => child.kind() == SyntaxKind::SYMBOL_NULL,
+            Some(child) => child.kind() == SyntaxKind::KEYWORD_NULL,
             None => false,
         }
     }

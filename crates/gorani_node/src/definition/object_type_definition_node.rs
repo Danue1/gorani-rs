@@ -27,6 +27,12 @@ impl ObjectTypeDefinitionNode {
         <Self as Parent<crate::DescriptionNode>>::child(self)
     }
 
+    pub fn r#type(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_TYPE))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as Parent<crate::NameNode>>::child(self)
     }
@@ -39,7 +45,7 @@ impl ObjectTypeDefinitionNode {
         <Self as Parent<crate::DirectivesNode>>::child(self)
     }
 
-    pub fn fields(&self) -> Option<crate::FieldsDefinitionNode> {
+    pub fn fields_definition(&self) -> Option<crate::FieldsDefinitionNode> {
         <Self as Parent<crate::FieldsDefinitionNode>>::child(self)
     }
 }

@@ -21,3 +21,39 @@ impl Node for SchemaExtensionNode {
 impl Parent<SchemaExtensionNode> for crate::TypeSystemExtensionNode {
     //
 }
+
+impl SchemaExtensionNode {
+    pub fn extend(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_EXTEND))
+    }
+
+    pub fn schema(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_SCHEMA))
+    }
+
+    pub fn directives(&self) -> Option<crate::DirectivesNode> {
+        <Self as Parent<crate::DirectivesNode>>::child(self)
+    }
+
+    pub fn left_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_LEFT_BRACE))
+    }
+
+    pub fn operation_type_definitions(
+        &self,
+    ) -> impl Iterator<Item = crate::RootOperationTypeDefinitionNode> + '_ {
+        <Self as crate::Parent<crate::RootOperationTypeDefinitionNode>>::children(self)
+    }
+
+    pub fn right_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_RIGHT_BRACE))
+    }
+}

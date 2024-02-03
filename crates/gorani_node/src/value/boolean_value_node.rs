@@ -25,8 +25,8 @@ impl Parent<BooleanValueNode> for crate::ValueNode {
 impl BooleanValueNode {
     pub fn value(&self) -> Option<bool> {
         match self.0.first_child()?.kind() {
-            SyntaxKind::SYMBOL_TRUE => Some(true),
-            SyntaxKind::SYMBOL_FALSE => Some(false),
+            SyntaxKind::KEYWORD_TRUE => Some(true),
+            SyntaxKind::KEYWORD_FALSE => Some(false),
             _ => None,
         }
     }

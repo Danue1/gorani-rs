@@ -21,3 +21,19 @@ impl Node for DefaultValueNode {
 impl Parent<DefaultValueNode> for crate::InputValueDefinitionNode {
     //
 }
+
+impl Parent<DefaultValueNode> for crate::VariableDefinitionNode {
+    //
+}
+
+impl DefaultValueNode {
+    pub fn equal(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_EQUAL))
+    }
+
+    pub fn value(&self) -> Option<crate::ValueNode> {
+        <Self as crate::Parent<crate::ValueNode>>::child(self)
+    }
+}

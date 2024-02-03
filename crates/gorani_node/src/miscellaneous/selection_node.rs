@@ -3,6 +3,12 @@ use gorani_syntax::{SyntaxKind, SyntaxNode};
 
 pub struct SelectionNode(pub(crate) SyntaxNode);
 
+pub enum SelectionKindNode {
+    Field(crate::FieldNode),
+    FragmentSpread(crate::FragmentSpreadNode),
+    InlineFragment(crate::InlineFragmentNode),
+}
+
 impl Node for SelectionNode {
     fn cast(node: SyntaxNode) -> Option<Self> {
         if matches!(node.kind(), SyntaxKind::SELECTION) {
@@ -22,7 +28,25 @@ impl Parent<SelectionNode> for crate::SelectionSetNode {
     //
 }
 
+impl SelectionKindNode {
+    pub fn cast(node: SyntaxNode) -> Option<SelectionKindNode> {
+        if let Some(field) = crate::FieldNode::cast(node.clone()) {
+            Some(Self::Field(field))
+        } else if let Some(fragment_spread) = crate::FragmentSpreadNode::cast(node.clone()) {
+            Some(Self::FragmentSpread(fragment_spread))
+        } else if let Some(inline_fragment) = crate::InlineFragmentNode::cast(node.clone()) {
+            Some(Self::InlineFragment(inline_fragment))
+        } else {
+            None
+        }
+    }
+}
+
 impl SelectionNode {
+    pub fn kind(&self) -> Option<SelectionKindNode> {
+        self.0.children().find_map(SelectionKindNode::cast)
+    }
+
     pub fn field(&self) -> Option<crate::FieldNode> {
         <Self as crate::Parent<crate::FieldNode>>::child(self)
     }

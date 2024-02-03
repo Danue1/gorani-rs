@@ -23,7 +23,19 @@ impl Parent<ObjectValueNode> for crate::ValueNode {
 }
 
 impl ObjectValueNode {
-    pub fn fields(&self) -> impl Iterator<Item = crate::ObjectFieldNode> + '_ {
+    pub fn left_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_LEFT_BRACE))
+    }
+
+    pub fn object_fields(&self) -> impl Iterator<Item = crate::ObjectFieldNode> + '_ {
         <Self as Parent<crate::ObjectFieldNode>>::children(self)
+    }
+
+    pub fn right_brace(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_RIGHT_BRACE))
     }
 }

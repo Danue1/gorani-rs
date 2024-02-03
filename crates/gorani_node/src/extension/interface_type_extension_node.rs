@@ -23,8 +23,24 @@ impl Parent<InterfaceTypeExtensionNode> for crate::TypeExtensionNode {
 }
 
 impl InterfaceTypeExtensionNode {
+    pub fn extend(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_EXTEND))
+    }
+
+    pub fn interface(&self) -> Option<SyntaxNode> {
+        self.0
+            .children()
+            .find(|node| matches!(node.kind(), SyntaxKind::KEYWORD_INTERFACE))
+    }
+
     pub fn name(&self) -> Option<crate::NameNode> {
         <Self as crate::Parent<crate::NameNode>>::child(self)
+    }
+
+    pub fn implements_interfaces(&self) -> Option<crate::ImplementsInterfacesNode> {
+        <Self as crate::Parent<crate::ImplementsInterfacesNode>>::child(self)
     }
 
     pub fn directives(&self) -> Option<crate::DirectivesNode> {
