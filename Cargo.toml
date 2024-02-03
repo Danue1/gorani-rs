@@ -1,0 +1,8 @@
+[workspace]
+resolver = "2"
+members = [
+  "crates/gorani_ast",
+  "crates/gorani_parse",
+  "crates/gorani_syntax",
+  "crates/gorani_validate",
+]
