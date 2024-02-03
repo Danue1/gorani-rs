@@ -4,14 +4,10 @@ pub type SyntaxNode = rowan::SyntaxNode<SyntaxKind>;
 #[allow(non_camel_case_types)]
 #[repr(u16)]
 pub enum SyntaxKind {
+    ERROR,
+
     /// https://spec.graphql.org/draft/#sec-Document
     DOCUMENT,
-
-    /// https://spec.graphql.org/draft/#Definition
-    DEFINITION,
-
-    /// https://spec.graphql.org/draft/#ExecutableDefinition
-    EXECUTABLE_DEFINITION,
 
     /// https://spec.graphql.org/draft/#ExecutableDocument
     EXECUTABLE_DOCUMENT,
@@ -21,6 +17,12 @@ pub enum SyntaxKind {
 
     /// https://spec.graphql.org/draft/#TypeSystemExtensionDocument
     TYPE_SYSTEM_EXTENSION_DOCUMENT,
+
+    /// https://spec.graphql.org/draft/#Definition
+    DEFINITION,
+
+    /// https://spec.graphql.org/draft/#ExecutableDefinition
+    EXECUTABLE_DEFINITION,
 
     /// https://spec.graphql.org/draft/#SchemaDefinition
     SCHEMA_DEFINITION,
@@ -121,9 +123,6 @@ pub enum SyntaxKind {
     /// https://spec.graphql.org/draft/#UnionMemberTypes
     UNION_MEMBER_TYPES,
 
-    /// https://spec.graphql.org/draft/#EnumValue
-    ENUM_VALUE,
-
     /// https://spec.graphql.org/draft/#ImplementsInterfaces
     IMPLEMENTS_INTERFACES,
 
@@ -218,7 +217,7 @@ pub enum SyntaxKind {
     NULL_VALUE,
 
     /// https://spec.graphql.org/draft/#EnumValue
-    ENUM_VALUE_VALUE,
+    ENUM_VALUE,
 
     /// https://spec.graphql.org/draft/#ListValue
     LIST_VALUE,
@@ -273,6 +272,49 @@ pub enum SyntaxKind {
 
     /// https://spec.graphql.org/draft/#sec-Names
     NAME,
+
+    SYMBOL_QUERY,        // query
+    SYMBOL_MUTATION,     // mutation
+    SYMBOL_SUBSCRIPTION, // subscription
+    SYMBOL_TRUE,         // true
+    SYMBOL_FALSE,        // false
+    SYMBOL_NULL,         // null
+    SYMBOL_REPEATABLE,   // repeatable
+    SYMBOL_ON,           // on
+    SYMBOL_SCALAR,       // scalar
+    SYMBOL_SCHEMA,       // schema
+    SYMBOL_TYPE,         // type
+    SYMBOL_INTERFACE,    // interface
+    SYMBOL_UNION,        // union
+    SYMBOL_ENUM,         // enum
+    SYMBOL_INPUT,        // input
+    SYMBOL_DIRECTIVE,    // directive
+    SYMBOL_IMPLEMENTS,   // implements
+    SYMBOL_EXTEND,       // extend
+    SYMBOL_EXTENDS,      // extends
+
+    // https://spec.graphql.org/draft/#sec-Location
+    LOCATION_QUERY,               // QUERY
+    LOCATION_MUTATION,            // MUTATION
+    LOCATION_SUBSCRIPTION,        // SUBSCRIPTION
+    LOCATION_FIELD,               // FIELD
+    LOCATION_FRAGMENT_DEFINITION, // FRAGMENT_DEFINITION
+    LOCATION_FRAGMENT_SPREAD,     // FRAGMENT_SPREAD
+    LOCATION_INLINE_FRAGMENT,     // INLINE_FRAGMENT
+    LOCATION_VARIABLE_DEFINITION, // VARIABLE_DEFINITION
+
+    // https://spec.graphql.org/draft/#sec-Location
+    LOCATION_SCHEMA,                 // SCHEMA
+    LOCATION_SCALAR,                 // SCALAR
+    LOCATION_OBJECT,                 // OBJECT
+    LOCATION_FIELD_DEFINITION,       // FIELD_DEFINITION
+    LOCATION_ARGUMENT_DEFINITION,    // ARGUMENT_DEFINITION
+    LOCATION_INTERFACE,              // INTERFACE
+    LOCATION_UNION,                  // UNION
+    LOCATION_ENUM,                   // ENUM
+    LOCATION_ENUM_VALUE,             // ENUM_VALUE
+    LOCATION_INPUT_OBJECT,           // INPUT_OBJECT
+    LOCATION_INPUT_FIELD_DEFINITION, // INPUT_FIELD_DEFINITION
 }
 
 impl From<SyntaxKind> for rowan::SyntaxKind {
@@ -285,7 +327,7 @@ impl rowan::Language for SyntaxKind {
     type Kind = SyntaxKind;
 
     fn kind_from_raw(raw: rowan::SyntaxKind) -> Self::Kind {
-        unsafe { std::mem::transmute::<u16, SyntaxKind>(raw.0) }
+        unsafe { std::mem::transmute(raw.0) }
     }
 
     fn kind_to_raw(kind: Self::Kind) -> rowan::SyntaxKind {
