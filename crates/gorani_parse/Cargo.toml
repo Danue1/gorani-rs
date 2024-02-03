@@ -4,3 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+gorani_diagnostic = { path = "../gorani_diagnostic" }
+gorani_node = { path = "../gorani_node" }
+gorani_syntax = { path = "../gorani_syntax" }

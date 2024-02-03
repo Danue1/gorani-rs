@@ -19,8 +19,27 @@ name = "gorani_ast"
 version = "0.1.0"
 
 [[package]]
+name = "gorani_diagnostic"
+version = "0.1.0"
+dependencies = [
+ "gorani_syntax",
+]
+
+[[package]]
+name = "gorani_node"
+version = "0.1.0"
+dependencies = [
+ "gorani_syntax",
+]
+
+[[package]]
 name = "gorani_parse"
 version = "0.1.0"
+dependencies = [
+ "gorani_diagnostic",
+ "gorani_node",
+ "gorani_syntax",
+]
 
 [[package]]
 name = "gorani_syntax"

@@ -2,6 +2,8 @@
 resolver = "2"
 members = [
   "crates/gorani_ast",
+  "crates/gorani_diagnostic",
+  "crates/gorani_node",
   "crates/gorani_parse",
   "crates/gorani_syntax",
   "crates/gorani_validate",
