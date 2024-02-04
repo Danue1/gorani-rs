@@ -47,7 +47,7 @@ impl InterfaceTypeExtensionNode {
         <Self as crate::Parent<crate::DirectivesNode>>::child(self)
     }
 
-    pub fn fields(&self) -> Option<crate::FieldsDefinitionNode> {
+    pub fn fields_definition(&self) -> Option<crate::FieldsDefinitionNode> {
         <Self as crate::Parent<crate::FieldsDefinitionNode>>::child(self)
     }
 }

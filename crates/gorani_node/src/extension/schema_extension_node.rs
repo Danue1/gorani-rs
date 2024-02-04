@@ -45,7 +45,7 @@ impl SchemaExtensionNode {
             .find(|node| matches!(node.kind(), SyntaxKind::SYMBOL_LEFT_BRACE))
     }
 
-    pub fn operation_type_definitions(
+    pub fn root_operation_type_definitions(
         &self,
     ) -> impl Iterator<Item = crate::RootOperationTypeDefinitionNode> + '_ {
         <Self as crate::Parent<crate::RootOperationTypeDefinitionNode>>::children(self)

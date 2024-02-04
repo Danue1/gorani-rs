@@ -17,6 +17,9 @@ checksum = "7704b5fdd17b18ae31c4c1da5a2e0305a2bf17b5249300a9ee9ed7b72114c636"
 [[package]]
 name = "gorani_ast"
 version = "0.1.0"
+dependencies = [
+ "gorani_span",
+]
 
 [[package]]
 name = "gorani_diagnostic"
@@ -40,6 +43,10 @@ dependencies = [
  "gorani_node",
  "gorani_syntax",
 ]
+
+[[package]]
+name = "gorani_span"
+version = "0.1.0"
 
 [[package]]
 name = "gorani_syntax"

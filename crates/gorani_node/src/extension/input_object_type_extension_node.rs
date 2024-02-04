@@ -43,7 +43,7 @@ impl InputObjectTypeExtensionNode {
         <Self as crate::Parent<crate::DirectivesNode>>::child(self)
     }
 
-    pub fn fields_definition(&self) -> Option<crate::InputFieldsDefinitionNode> {
+    pub fn input_fields_definition(&self) -> Option<crate::InputFieldsDefinitionNode> {
         <Self as crate::Parent<crate::InputFieldsDefinitionNode>>::child(self)
     }
 }

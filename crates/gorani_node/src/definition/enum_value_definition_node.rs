@@ -27,7 +27,7 @@ impl EnumValueDefinitionNode {
         <Self as Parent<crate::DescriptionNode>>::child(self)
     }
 
-    pub fn enum_name(&self) -> Option<crate::NameNode> {
+    pub fn name(&self) -> Option<crate::NameNode> {
         <Self as Parent<crate::NameNode>>::child(self)
     }
 

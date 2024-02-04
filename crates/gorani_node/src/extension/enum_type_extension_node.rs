@@ -43,7 +43,7 @@ impl EnumTypeExtensionNode {
         <Self as crate::Parent<crate::DirectivesNode>>::child(self)
     }
 
-    pub fn values_definition(&self) -> Option<crate::EnumValuesDefinitionNode> {
+    pub fn enum_values_definition(&self) -> Option<crate::EnumValuesDefinitionNode> {
         <Self as crate::Parent<crate::EnumValuesDefinitionNode>>::child(self)
     }
 }

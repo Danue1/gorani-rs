@@ -4,7 +4,7 @@ members = [
   "crates/gorani_ast",
   "crates/gorani_diagnostic",
   "crates/gorani_node",
-  "crates/gorani_parse",
+  "crates/gorani_parse", "crates/gorani_span",
   "crates/gorani_syntax",
   "crates/gorani_validate",
 ]

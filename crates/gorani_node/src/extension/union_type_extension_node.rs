@@ -43,7 +43,7 @@ impl UnionTypeExtensionNode {
         <Self as crate::Parent<crate::DirectivesNode>>::child(self)
     }
 
-    pub fn types(&self) -> Option<crate::UnionMemberTypesNode> {
+    pub fn union_member_types(&self) -> Option<crate::UnionMemberTypesNode> {
         <Self as crate::Parent<crate::UnionMemberTypesNode>>::child(self)
     }
 }
