@@ -1,0 +1,11 @@
+---
+source: crates/gorani_lex/src/lib.rs
+expression: tokens
+---
+[
+    (
+        IGNORED_TOKEN,
+        5,
+        " ,\t\n\r",
+    ),
+]

@@ -1,0 +1,76 @@
+---
+source: crates/gorani_lex/src/lib.rs
+expression: tokens
+---
+[
+    (
+        INT_VALUE,
+        1,
+        "0",
+    ),
+    (
+        NAME,
+        1,
+        "x",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        INT_VALUE,
+        1,
+        "0",
+    ),
+    (
+        ERROR,
+        1,
+        ".",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        INT_VALUE,
+        1,
+        "0",
+    ),
+    (
+        NAME,
+        1,
+        "e",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        INT_VALUE,
+        3,
+        "123",
+    ),
+    (
+        NAME,
+        4,
+        "_456",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        INT_VALUE,
+        4,
+        "-123",
+    ),
+    (
+        NAME,
+        4,
+        "_456",
+    ),
+]

@@ -1,0 +1,61 @@
+---
+source: crates/gorani_lex/src/lib.rs
+expression: tokens
+---
+[
+    (
+        FLOAT_VALUE,
+        3,
+        "0e0",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        FLOAT_VALUE,
+        5,
+        "123e0",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        FLOAT_VALUE,
+        7,
+        "123e456",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        FLOAT_VALUE,
+        4,
+        "-0e0",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        FLOAT_VALUE,
+        6,
+        "-123e0",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        FLOAT_VALUE,
+        8,
+        "-123e456",
+    ),
+]

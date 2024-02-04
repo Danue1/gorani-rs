@@ -1,0 +1,61 @@
+---
+source: crates/gorani_lex/src/lib.rs
+expression: tokens
+---
+[
+    (
+        STRING_VALUE,
+        2,
+        "",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        STRING_VALUE,
+        5,
+        "foo",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        STRING_VALUE,
+        10,
+        "foo\"bar",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        STRING_VALUE,
+        10,
+        "foo\nbar",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        STRING_VALUE,
+        10,
+        "foo\rbar",
+    ),
+    (
+        IGNORED_TOKEN,
+        1,
+        " ",
+    ),
+    (
+        STRING_VALUE,
+        12,
+        "foo\r\nbar",
+    ),
+]

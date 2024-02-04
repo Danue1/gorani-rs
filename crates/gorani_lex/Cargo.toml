@@ -1,0 +1,10 @@
+[package]
+name = "gorani_lex"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gorani_syntax = { path = "../gorani_syntax" }
+
+[dev-dependencies]
+insta = "1.34.0"
